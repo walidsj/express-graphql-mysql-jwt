@@ -3,7 +3,7 @@ const { ApolloServer } = require("apollo-server-express");
 const jwt = require("express-jwt");
 const cors = require("cors");
 require("dotenv").config();
-const schema = require("./data/schema");
+const schema = require("./src/schema");
 
 // create express app
 const app = express();
@@ -14,7 +14,7 @@ app.get("/", (req, res) => res.send(`🚀 Graphql server is ready`));
 
 // auth middleware
 const auth = jwt({
-	secret: process.env.JWT_SECRET,
+	secret: new Buffer.from(process.env.JWT_SECRET).toString("base64"),
 	credentialsRequired: false,
 });
 

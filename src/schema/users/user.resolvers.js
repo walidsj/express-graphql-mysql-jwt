@@ -1,4 +1,4 @@
-const { User } = require("../models");
+const { User } = require("../../../models");
 const bcrypt = require("bcrypt");
 const jsonwebtoken = require("jsonwebtoken");
 require("dotenv").config();
@@ -7,7 +7,7 @@ const resolvers = {
 	Query: {
 		// fetch the profile of currently authenticated user
 		async me(_, args, { user }) {
-			// make sure user is logged in
+			// make sure user is loggedin
 			if (!user) {
 				throw new Error("You are not authenticated!");
 			}
@@ -19,17 +19,19 @@ const resolvers = {
 
 	Mutation: {
 		// Handle user signup
-		async signup(_, { username, email, password }) {
+		async register(_, { email, password, name, npm, phone }) {
 			const user = await User.create({
-				username,
 				email,
 				password: await bcrypt.hash(password, 10),
+				name,
+				npm,
+				phone,
 			});
 
 			// return json web token
 			return jsonwebtoken.sign(
 				{ id: user.id, email: user.email },
-				process.env.JWT_SECRET,
+				new Buffer.from(process.env.JWT_SECRET).toString("base64"),
 				{ expiresIn: "30d" }
 			);
 		},
@@ -51,7 +53,7 @@ const resolvers = {
 			// return json web token
 			return jsonwebtoken.sign(
 				{ id: user.id, email: user.email },
-				process.env.JWT_SECRET,
+				new Buffer.from(process.env.JWT_SECRET).toString("base64"),
 				{ expiresIn: "30d" }
 			);
 		},

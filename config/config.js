@@ -6,8 +6,6 @@ const dbDetails = {
 	database: process.env.DB_NAME,
 	host: process.env.DB_HOST,
 	dialect: "mysql",
-
-	// penambahan supaya warning "deprecated String based operators are now deprecated." ilang
 	operatorsAliases: false,
 };
 

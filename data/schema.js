@@ -1,8 +1,9 @@
+const { gql } = require("apollo-server-express");
 const { makeExecutableSchema } = require("graphql-tools");
 const resolvers = require("./resolvers");
 
 // Define our schema using the GraphQL schema language
-const typeDefs = `
+const typeDefs = gql`
       type User {
         id: Int!
         username: String!

@@ -12,9 +12,27 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	Level.init(
 		{
-			name: DataTypes.STRING,
-			description: DataTypes.STRING,
-			imgUrl: DataTypes.STRING,
+			name: {
+				allowNull: false,
+				type: DataTypes.STRING,
+				validate: {
+					len: [4, 255],
+				},
+			},
+			description: {
+				allowNull: true,
+				type: DataTypes.STRING,
+				validate: {
+					max: 255,
+				},
+			},
+			imgUrl: {
+				allowNull: true,
+				type: DataTypes.STRING,
+				validate: {
+					max: 255,
+				},
+			},
 		},
 		{
 			sequelize,

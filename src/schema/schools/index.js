@@ -1,5 +1,5 @@
-const typeDefs = require("./school.types");
-const resolvers = require("./school.resolvers");
+const typeDefs = require("./types");
+const resolvers = require("./resolvers");
 
 // mengimpor modul typeDefs & resolvers, kemudian diexport ke schema
 module.exports = {

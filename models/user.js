@@ -12,13 +12,50 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	User.init(
 		{
-			email: DataTypes.STRING,
-			password: DataTypes.STRING,
-			name: DataTypes.STRING,
-			phoneNumber: DataTypes.STRING,
-			levelId: DataTypes.INTEGER,
-			schoolId: DataTypes.INTEGER,
-			role: DataTypes.ENUM("user", "provider", "admin"),
+			email: {
+				allowNull: false,
+				type: DataTypes.STRING,
+				validate: {
+					isEmail: true,
+					max: 255,
+				},
+			},
+			password: {
+				allowNull: false,
+				type: DataTypes.STRING,
+				validate: {
+					max: 255,
+				},
+			},
+			name: {
+				allowNull: false,
+				type: DataTypes.STRING,
+				validate: {
+					len: [4, 255],
+				},
+			},
+			phoneNumber: {
+				allowNull: true,
+				type: DataTypes.STRING,
+				validate: {
+					isNumeric: true,
+					len: [9, 13],
+				},
+			},
+			schoolId: {
+				allowNull: false,
+				type: DataTypes.INTEGER,
+				validate: {
+					isInt: true,
+				},
+			},
+			role: {
+				allowNull: false,
+				type: DataTypes.ENUM("user", "provider", "admin"),
+				validate: {
+					isIn: [["user", "provider", "admin"]],
+				},
+			},
 		},
 		{
 			sequelize,

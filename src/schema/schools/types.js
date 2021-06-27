@@ -11,7 +11,6 @@ const typeDefs = gql`
 		id: ID!
 		name: String!
 		imgUrl: String
-
 		level: Level
 	}
 `;

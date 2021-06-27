@@ -12,9 +12,27 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	School.init(
 		{
-			name: DataTypes.STRING,
-			imgUrl: DataTypes.STRING,
-			levelId: DataTypes.INTEGER,
+			name: {
+				allowNull: false,
+				type: DataTypes.STRING,
+				validate: {
+					len: [4, 255],
+				},
+			},
+			imgUrl: {
+				allowNull: true,
+				type: DataTypes.STRING,
+				validate: {
+					max: 255,
+				},
+			},
+			levelId: {
+				allowNull: false,
+				type: DataTypes.INTEGER,
+				validate: {
+					isInt: true,
+				},
+			},
 		},
 		{
 			sequelize,

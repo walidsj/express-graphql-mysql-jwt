@@ -24,14 +24,6 @@ module.exports = {
 				allowNull: true,
 				type: Sequelize.STRING,
 			},
-			levelId: {
-				allowNull: false,
-				type: Sequelize.INTEGER,
-				references: {
-					model: "levels", // nama database
-					key: "id",
-				},
-			},
 			schoolId: {
 				allowNull: false,
 				type: Sequelize.INTEGER,

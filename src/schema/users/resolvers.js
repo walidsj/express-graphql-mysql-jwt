@@ -17,7 +17,8 @@ const resolvers = {
 
 	User: {
 		async level(user, args, context, info) {
-			return await Level.findByPk(user.levelId);
+			const school = await School.findByPk(user.schoolId);
+			return await Level.findByPk(school.levelId);
 		},
 		async school(user, args, context, info) {
 			return await School.findByPk(user.schoolId);
@@ -26,17 +27,10 @@ const resolvers = {
 
 	Mutation: {
 		// Handle user signup
-		async register(
-			_,
-			{ email, password, name, phoneNumber, levelId, schoolId }
-		) {
+		async userSignup(_, { input }) {
 			const user = await User.create({
-				email,
-				password: await bcrypt.hash(password, 10),
-				name,
-				phoneNumber,
-				levelId,
-				schoolId,
+				...input,
+				password: await bcrypt.hash(input.password, 10),
 				role: "user",
 			});
 
@@ -48,7 +42,9 @@ const resolvers = {
 		},
 
 		// Handles user login
-		async login(_, { email, password }) {
+		async userSignin(_, { input }) {
+			const { email, password } = input;
+
 			const user = await User.findOne({ where: { email } });
 			if (!user) throw new Error("No user with that email");
 

@@ -12,22 +12,26 @@ const typeDefs = gql`
 		name: String!
 		phoneNumber: String
 		role: String!
-
 		level: Level
 		school: School
 	}
 
 	type Mutation {
-		register(
-			email: String!
-			password: String!
-			name: String!
-			phoneNumber: String
-			levelId: Int!
-			schoolId: Int!
-		): String
+		userSignup(input: RegisterInput!): String
+		userSignin(input: LoginInput!): String
+	}
 
-		login(email: String!, password: String!): String
+	input RegisterInput {
+		email: String!
+		password: String!
+		name: String!
+		phoneNumber: String
+		schoolId: Int!
+	}
+
+	input LoginInput {
+		email: String!
+		password: String!
 	}
 `;
 module.exports = typeDefs;

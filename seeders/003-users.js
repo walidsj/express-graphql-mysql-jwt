@@ -19,7 +19,6 @@ module.exports = {
 					email: "admin@admin.com",
 					password: await bcrypt.hash("admin", 10),
 					name: "Moh. Walid Arkham Sani",
-					levelId: 1,
 					schoolId: 1,
 					role: "admin",
 					createdAt: new Date(),

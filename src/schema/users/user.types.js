@@ -2,16 +2,19 @@ const { gql } = require("apollo-server-express");
 
 // Define our schema using the GraphQL schema language
 const typeDefs = gql`
-	type User {
-		id: Int!
-		email: String!
-		name: String!
-		npm: String!
-		phone: String!
-	}
-
 	type Query {
 		me: User
+	}
+
+	type User {
+		id: ID!
+		email: String!
+		name: String!
+		phoneNumber: String
+		role: String!
+
+		level: Level
+		school: School
 	}
 
 	type Mutation {
@@ -19,8 +22,9 @@ const typeDefs = gql`
 			email: String!
 			password: String!
 			name: String!
-			npm: String!
-			phone: String!
+			phoneNumber: String
+			levelId: Int!
+			schoolId: Int!
 		): String
 
 		login(email: String!, password: String!): String

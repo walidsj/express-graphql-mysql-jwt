@@ -1,30 +1,27 @@
 module.exports = {
 	up: async (queryInterface, Sequelize) => {
-		await queryInterface.createTable("Users", {
+		await queryInterface.createTable("Schools", {
 			id: {
 				allowNull: false,
 				autoIncrement: true,
 				primaryKey: true,
 				type: Sequelize.INTEGER,
 			},
-			email: {
-				allowNull: false,
-				type: Sequelize.STRING,
-			},
-			password: {
-				allowNull: false,
-				type: Sequelize.STRING,
-			},
 			name: {
 				allowNull: false,
 				type: Sequelize.STRING,
 			},
-			npm: {
-				allowNull: false,
+			imgUrl: {
+				allowNull: true,
 				type: Sequelize.STRING,
 			},
-			phone: {
-				type: Sequelize.STRING,
+			levelId: {
+				allowNull: false,
+				type: Sequelize.INTEGER,
+				references: {
+					model: "levels", // nama database
+					key: "id",
+				},
 			},
 			createdAt: {
 				allowNull: false,
@@ -37,6 +34,6 @@ module.exports = {
 		});
 	},
 	down: async (queryInterface, Sequelize) => {
-		await queryInterface.dropTable("Users");
+		await queryInterface.dropTable("Schools");
 	},
 };

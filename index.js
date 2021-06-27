@@ -27,7 +27,7 @@ const server = new ApolloServer({
 		return { user };
 	},
 });
-server.applyMiddleware({ app, path: "/api" });
+server.applyMiddleware({ app, path: "/graphql" });
 
 // jalankan server
 const PORT = process.env.PORT || 8080; // default untuk deploying di AWS

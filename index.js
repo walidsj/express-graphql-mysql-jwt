@@ -10,7 +10,9 @@ const app = express();
 
 // test dan CORS handling
 app.use(cors());
-app.get("/", (req, res) => res.send(`🚀 Graphql server is ready`));
+app.get("/", (req, res) =>
+	res.send(`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`)
+);
 
 // auth middleware
 const auth = jwt({
@@ -30,5 +32,9 @@ const server = new ApolloServer({
 server.applyMiddleware({ app, path: "/graphql" });
 
 // jalankan server
-const PORT = process.env.PORT || 8080; // default untuk deploying di AWS
-app.listen(PORT, () => console.log(`Server ready at http://localhost/${PORT}`));
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () =>
+	console.log(
+		`🚀 Server ready at http://localhost:${PORT}${server.graphqlPath}`
+	)
+);

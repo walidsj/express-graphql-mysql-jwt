@@ -12,6 +12,7 @@ const typeDefs = gql`
 		name: String!
 		description: String
 		imgUrl: String
+		schools: [School]
 	}
 `;
 module.exports = typeDefs;

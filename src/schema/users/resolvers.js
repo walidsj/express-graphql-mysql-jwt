@@ -17,6 +17,7 @@ const resolvers = {
 
 	User: {
 		async level(user, args, context, info) {
+			//(parent, args, context, info)
 			const school = await School.findByPk(user.schoolId);
 			return await Level.findByPk(school.levelId);
 		},

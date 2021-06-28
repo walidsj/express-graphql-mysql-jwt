@@ -1,6 +1,4 @@
 const { Level, School } = require("../../../models");
-const bcrypt = require("bcrypt");
-const jsonwebtoken = require("jsonwebtoken");
 require("dotenv").config();
 
 const resolvers = {

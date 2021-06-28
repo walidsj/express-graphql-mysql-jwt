@@ -1,7 +1,7 @@
 const { Level } = require("../../../models");
-const bcrypt = require("bcrypt");
-const jsonwebtoken = require("jsonwebtoken");
 require("dotenv").config();
+
+const schoolsDataLoader = require("../../loaders/schools-loader.js");
 
 const resolvers = {
 	Query: {
@@ -12,7 +12,11 @@ const resolvers = {
 			return await Level.findAll();
 		},
 	},
-
+	Level: {
+		async schools(level) {
+			return await schoolsDataLoader.clearAll().load(level.id);
+		},
+	},
 	Mutation: {},
 };
 

@@ -13,21 +13,18 @@ module.exports = (sequelize, DataTypes) => {
 	Level.init(
 		{
 			name: {
-				allowNull: false,
 				type: DataTypes.STRING,
 				validate: {
 					len: [4, 255],
 				},
 			},
 			description: {
-				allowNull: true,
 				type: DataTypes.STRING,
 				validate: {
 					max: 255,
 				},
 			},
 			imgUrl: {
-				allowNull: true,
 				type: DataTypes.STRING,
 				validate: {
 					max: 255,
